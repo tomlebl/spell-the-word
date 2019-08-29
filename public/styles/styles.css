@@ -102,10 +102,10 @@ label {
   margin-top: 0.5em;
 }
 
-.container_display {
+/* .container_display {
   display: inline-grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 3em;
   justify-items: stretch;
   justify-content: center;
-}
+} */
