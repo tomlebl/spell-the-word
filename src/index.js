@@ -55,6 +55,7 @@ const startGame = () => {
   guesses = 6 - getDifficulty()
   score = 0
   startPuzzle()
+  console.log('startGame', puzzle1.statusMessage)
 }
 
 window.addEventListener('keypress', e => {
@@ -72,4 +73,4 @@ window.addEventListener('keypress', e => {
 
 document.querySelector('#reset').addEventListener('click', startGame)
 
-//startPuzzle()
+renderImg('images/grapes.jpeg')
