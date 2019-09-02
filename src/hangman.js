@@ -1,6 +1,7 @@
 class Hangman {
-  constructor(word, guesses) {
+  constructor(word, imgSrc, guesses) {
     this.word = word.toLowerCase().split('')
+    this.imgSrc = imgSrc
     this.remainingGuesses = guesses
     this.guessedLetters = []
     this.wordToGuess = word.toLowerCase()
