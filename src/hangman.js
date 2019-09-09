@@ -1,3 +1,5 @@
+import Game from './game'
+
 class Hangman {
   constructor(word, imgSrc, guesses) {
     this.word = word.toLowerCase().split('')
@@ -27,15 +29,17 @@ class Hangman {
 
     this.checkStatus()
   }
-  get statusMessage() {
-    if (this.status === 'finished') {
-      return 'Great work! You guessed the word.'
-    } else if (this.status === 'failed') {
-      return `Nice try! The word was "${this.wordToGuess}".`
-    } else {
-      return `You have ${this.remainingGuesses} remaining guesses`
-    }
-  }
+
+  // get statusMessage() {
+  //   if (this.status === 'finished') {
+  //     return 'Great work! You guessed the word.'
+  //   } else if (this.status === 'failed') {
+  //     return `Nice try! The word was "${this.wordToGuess}".`
+  //   } else {
+  //     return `You have ${this.remainingGuesses} remaining guesses`
+  //   }
+  // }
+
   get puzzle() {
     let puzzle = ''
     this.word.forEach(letter => {

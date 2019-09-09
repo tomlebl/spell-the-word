@@ -81,10 +81,12 @@ const puzzles = [
   }
 ]
 
-const getPuzzle = difficulty => {
-  const puzzlesFiltered = puzzles.filter(
-    puzzle => puzzle.difficulty === difficulty
-  )
+const getPuzzle = (difficulty, usedWords) => {
+  const puzzlesFiltered = puzzles
+    .filter(puzzle => puzzle.difficulty === difficulty)
+    .filter(puzzle => !usedWords.includes(puzzle.word))
+
+  console.log(puzzlesFiltered)
   return puzzlesFiltered[Math.floor(Math.random() * puzzlesFiltered.length)]
 }
 

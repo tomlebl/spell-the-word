@@ -1,12 +1,10 @@
-import Hangman from './hangman'
-import getPuzzle from './requests'
-
 class Game {
   constructor() {
     this.score = 0
     this.difficulty = this.getDifficulty()
     this.remainingGuesses = 6 - this.difficulty
-    this.status = 'playing'
+    this.status = 'start'
+    this.usedWords = []
   }
   getDifficulty() {
     if (document.getElementById('beginner').checked) {
@@ -17,10 +15,6 @@ class Game {
       return 3
     }
   }
-  // get hangman() {
-  //   const { word, imgSrc } = getPuzzle(this.difficulty)
-  //   return new Hangman(word, imgSrc, this.remainingGuesses)
-  // }
 }
 
 export { Game as default }
