@@ -87,7 +87,9 @@ const getPuzzle = (difficulty, usedWords) => {
     .filter(puzzle => !usedWords.includes(puzzle.word))
 
   console.log(puzzlesFiltered)
-  return puzzlesFiltered[Math.floor(Math.random() * puzzlesFiltered.length)]
+  return puzzlesFiltered.length === 0
+    ? { word: '' }
+    : puzzlesFiltered[Math.floor(Math.random() * puzzlesFiltered.length)]
 }
 
 //[]

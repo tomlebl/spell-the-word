@@ -1,4 +1,4 @@
-import Game from './game'
+//import Game from './game'
 
 class Hangman {
   constructor(word, imgSrc, guesses) {

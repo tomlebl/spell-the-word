@@ -7,8 +7,12 @@ const body = document.querySelector('body')
 const difficultyEl = document.querySelector('#difficulty')
 const imgConstainer = document.querySelector('#container_img')
 const resetButton = document.querySelector('#reset')
+const title = document.querySelector('#title-container')
+
 const picture = document.createElement('img')
 const puzzleDisplay = document.createElement('div')
+const puzzleContainer = document.createElement('div')
+const puzzleMessage = document.createElement('h3')
 
 let hangman1
 let game1
@@ -16,8 +20,8 @@ let game1
 const setRandomColour = () =>
   '#' + (Math.random().toString(16) + '000000').slice(2, 8).slice(-6)
 
-const setGradient = () => {
-  body.style.background = `linear-gradient(to right, ${setRandomColour()}, ${setRandomColour()})`
+const setGradient = (color1, color2) => {
+  body.style.background = `linear-gradient(to right, ${color1}, ${color2})`
 }
 
 const renderImg = imgSrc => {
@@ -28,7 +32,6 @@ const renderImg = imgSrc => {
 const render = () => {
   const puzzleEl = document.querySelector('#puzzle')
   puzzleEl.innerHTML = ''
-  //statusEl.textContent = puzzle1.statusMessage
   hangman1.puzzle.split('').forEach(element => {
     let letter = document.createElement('span')
     letter.textContent = element
@@ -37,11 +40,12 @@ const render = () => {
 }
 
 const startPuzzle = () => {
-  if (!getPuzzle()) {
-    const { word, imgSrc } = getPuzzle(game1.difficulty, game1.usedWords)
+  const { word, imgSrc } = getPuzzle(game1.difficulty, game1.usedWords)
+  if (word != '') {
     game1.usedWords.push(word)
     hangman1 = new Hangman(word, imgSrc, game1.remainingGuesses)
-    setGradient()
+    setGradient(setRandomColour(), setRandomColour())
+    puzzleMessage.textContent = ''
     renderImg(hangman1.imgSrc)
     render()
   } else {
@@ -55,25 +59,31 @@ const startGame = () => {
   } else if (!game1) {
     game1 = new Game()
     puzzleDisplay.innerHTML = '<div id="puzzle" class="puzzle">'
-    puzzleDisplay.classList.add('display')
-    difficultyEl.replaceWith(puzzleDisplay)
+    puzzleContainer.classList.add('display', 'puzzle-container')
+    puzzleContainer.appendChild(puzzleDisplay)
+    puzzleContainer.appendChild(puzzleMessage)
+    difficultyEl.replaceWith(puzzleContainer)
     resetButton.textContent = 'Reset the Game'
+    imgConstainer.removeChild(title)
     startPuzzle()
   }
 }
 
-renderImg('images/grapes.jpeg')
-
 window.addEventListener('keypress', e => {
   const guess = String.fromCharCode(e.charCode)
-  hangman1.makeGuess(guess)
-  game1.remainingGuesses = hangman1.remainingGuesses
+  if (hangman1.status === 'playing') {
+    hangman1.makeGuess(guess)
+    game1.remainingGuesses = hangman1.remainingGuesses
+  }
+
   if (hangman1.status === 'finished' && game1.remainingGuesses > 0) {
+    hangman1.status = 'pending'
     game1.score += game1.difficulty
+    puzzleMessage.textContent = 'Well Done !!!'
     console.log(game1.score)
     setTimeout(startPuzzle, 3000)
   }
-  console.log('guesses', game1.remainingGuesses)
+
   render()
 })
 
