@@ -5,6 +5,7 @@ class Game {
     this.remainingGuesses = 6 - this.difficulty
     this.status = 'start'
     this.usedWords = []
+    this.displayMessage = ''
   }
   getDifficulty() {
     if (document.getElementById('beginner').checked) {

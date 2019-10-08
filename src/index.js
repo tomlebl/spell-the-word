@@ -2,12 +2,15 @@ import Hangman from './hangman'
 import getPuzzle from './requests'
 import Game from './game'
 
-const statusEl = document.querySelector('#status')
 const body = document.querySelector('body')
-const difficultyEl = document.querySelector('#difficulty')
-const imgConstainer = document.querySelector('#container_img')
-const resetButton = document.querySelector('#reset')
-const title = document.querySelector('#title-container')
+const difficultyEl = body.querySelector('#difficulty')
+const imgConstainer = body.querySelector('#container-img')
+const resetButton = body.querySelector('#reset')
+const title = body.querySelector('#container-title')
+const emojiContainer = body.querySelectorAll('.container-emoji')
+const scoreCurrent = body.querySelector('#score-current')
+const guessesDisplay = body.querySelector('#score-guessess')
+const difficultyDisplay = body.querySelector('#score-difficulty')
 
 const picture = document.createElement('img')
 const puzzleDisplay = document.createElement('div')
@@ -29,7 +32,7 @@ const renderImg = imgSrc => {
   imgConstainer.appendChild(picture)
 }
 
-const render = () => {
+const renderPuzzle = () => {
   const puzzleEl = document.querySelector('#puzzle')
   puzzleEl.innerHTML = ''
   hangman1.puzzle.split('').forEach(element => {
@@ -39,17 +42,45 @@ const render = () => {
   })
 }
 
+const renderEmoji = () => {
+  emojiContainer.forEach(element => {
+    var emoji = document.createElement('img')
+    emoji.setAttribute('src', 'images/emoji-smiley.png')
+    emoji.setAttribute('style', 'width: 300px')
+    element.appendChild(emoji)
+  })
+}
+
 const startPuzzle = () => {
-  const { word, imgSrc } = getPuzzle(game1.difficulty, game1.usedWords)
-  if (word != '') {
+  puzzleContainer.classList.remove('display-succes')
+  puzzleMessage.classList.remove('animated', 'tada')
+  emojiContainer.forEach(element => {
+    element.innerHTML = ''
+  })
+
+  let { word, imgSrc } = getPuzzle(game1.difficulty, game1.usedWords)
+  if (word === '' && game1.difficulty === 3) {
+    puzzleMessage.textContent = 'All puzzles solved. Game over'
+  } else {
+    if (word === '') {
+      game1.difficulty++
+      difficultyDisplay.textContent = game1.difficulty
+      const newPuzzle = getPuzzle(game1.difficulty, game1.usedWords)
+      word = newPuzzle.word
+      imgSrc = newPuzzle.imgSrc
+      game1.status = 'difChange'
+    }
     game1.usedWords.push(word)
     hangman1 = new Hangman(word, imgSrc, game1.remainingGuesses)
     setGradient(setRandomColour(), setRandomColour())
-    puzzleMessage.textContent = ''
+
+    puzzleMessage.textContent =
+      game1.status === 'difChange' ? 'Game difficulty was increased' : ''
+
+    game1.status = 'playing'
+
     renderImg(hangman1.imgSrc)
-    render()
-  } else {
-    console.log('game over')
+    renderPuzzle()
   }
 }
 
@@ -58,33 +89,48 @@ const startGame = () => {
     location.reload()
   } else if (!game1) {
     game1 = new Game()
+    game1.status = 'playing'
     puzzleDisplay.innerHTML = '<div id="puzzle" class="puzzle">'
-    puzzleContainer.classList.add('display', 'puzzle-container')
+    puzzleContainer.classList.add('display', 'container-puzzle')
+    guessesDisplay.textContent = game1.remainingGuesses
     puzzleContainer.appendChild(puzzleDisplay)
     puzzleContainer.appendChild(puzzleMessage)
     difficultyEl.replaceWith(puzzleContainer)
     resetButton.textContent = 'Reset the Game'
     imgConstainer.removeChild(title)
+    difficultyDisplay.textContent = game1.difficulty
     startPuzzle()
   }
 }
 
 window.addEventListener('keypress', e => {
   const guess = String.fromCharCode(e.charCode)
+
   if (hangman1.status === 'playing') {
     hangman1.makeGuess(guess)
     game1.remainingGuesses = hangman1.remainingGuesses
+    guessesDisplay.textContent = game1.remainingGuesses
+    if (game1.remainingGuesses === 0) {
+      puzzleMessage.textContent = 'Game Over!'
+      puzzleContainer.classList.add('display-fail')
+      hangman1.guessedLetters = hangman1.word
+      renderPuzzle()
+      return
+    }
   }
 
   if (hangman1.status === 'finished' && game1.remainingGuesses > 0) {
     hangman1.status = 'pending'
-    game1.score += game1.difficulty
+    game1.score++
+    puzzleContainer.classList.add('display-succes')
+    puzzleMessage.classList.add('animated', 'tada')
     puzzleMessage.textContent = 'Well Done !!!'
-    console.log(game1.score)
-    setTimeout(startPuzzle, 3000)
+    renderEmoji()
+    scoreCurrent.textContent = game1.score
+    setTimeout(startPuzzle, 2000)
   }
 
-  render()
+  renderPuzzle()
 })
 
 resetButton.addEventListener('click', startGame)

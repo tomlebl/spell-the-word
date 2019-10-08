@@ -7,19 +7,37 @@
     <link rel="icon" href="images/spell.png" />
   </head>
   <body>
-    <!-- <div class='container'></div> -->
-     
-    <div id="container_img">
-      <div id='title-container'>
-        <span class="animated fadeIn">S</span><span>p</span><span>e</span>
-      </div>
+    
+    <div class="container-emoji"></div>
+    
+    <div id="container-img">
+      <div id='container-title'>
+        <span class="animated bounceInDown">S</span>
+        <span class="animated bounceInDown">p</span>
+        <span class="animated bounceInDown">e</span>
+        <span class="animated bounceInDown">l</span>
+        <span class="animated bounceInDown" style="margin-right: 5px">l</span>
+        <span class="animated bounceInDown">T</span>
+        <span class="animated bounceInDown">h</span>
+        <span class="animated bounceInDown">e</span>
+
+
+
+       </div>
     </div>
+
+    <div class="container-emoji"></div>
        
-    <div id='score' class="display">Score</div>
+    <div id='container-score' class="display">
+      <h3>Hi-Score</h3>
+      <h3>Score</h3>
+      <div class='display-number' id='score-best'>10</div>
+      <div class='display-number' id='score-current'>0</div>
+    </div>
       
     <div id="difficulty" class="display animated fadeIn">
         <h2>Select difficulty:</h2>
-        <div class="radio-container">
+        <div class="container-radio">
             <div class="radio">
               <input
               type="radio"
@@ -51,7 +69,12 @@
         </div>
       </div>
 
-      <div id='guesses' class="display">Reamining guesses</div>
+      <div id='container-score' class="display">
+        <h3>Guesses</h3>
+        <h3>Difficulty</h3>
+        <div class='display-number' id='score-guessess'>-</div>
+        <div class='display-number' id='score-difficulty'>-</div>
+      </div>
 
     </div>
     <!-- </div> -->
