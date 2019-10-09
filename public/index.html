@@ -3,40 +3,58 @@
   <head>
     <title>Spell The Word</title>
     <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="icon" href="images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="icon" href="images/spell.png" />
   </head>
   <body>
-    <div id="container_img"></div>
+    
+    <div class="container-emoji"></div>
+    
+    <div id="container-img">
+      <div id='container-title'>
+        <span class="animated bounceInDown">S</span>
+        <span class="animated bounceInDown">p</span>
+        <span class="animated bounceInDown">e</span>
+        <span class="animated bounceInDown">l</span>
+        <span class="animated bounceInDown" style="margin-right: 5px">l</span>
+        <span class="animated bounceInDown">T</span>
+        <span class="animated bounceInDown">h</span>
+        <span class="animated bounceInDown">e</span>
 
-    <div class="container_display">
-      <div class="display">
-        <p>score</p>
-        <p id="status"></p>
-      </div>
-      <div class="display">
-        <div id="puzzle" class="puzzle"></div>
-      </div>
 
-      <div class="display">
+
+       </div>
+    </div>
+
+    <div class="container-emoji"></div>
+       
+    <div id='container-score' class="display">
+      <h3>Hi-Score</h3>
+      <h3>Score</h3>
+      <div class='display-number' id='score-best'>10</div>
+      <div class='display-number' id='score-current'>0</div>
+    </div>
+      
+    <div id="difficulty" class="display animated fadeIn">
         <h2>Select difficulty:</h2>
-        <div class="radio-container">
-          <div class="radio">
-            <input
+        <div class="container-radio">
+            <div class="radio">
+              <input
               type="radio"
               id="beginner"
               name="difficulty"
               value="beginner"
               checked
-            />
-            <label for="beginner">Beginner</label>
-          </div>
+              />
+              <label for="beginner">Beginner</label>
+            </div>
           <div class="radio">
-            <input
+              <input
               type="radio"
               id="intermediate"
               name="difficulty"
               value="intermediate"
-            />
+              />
             <label for="intermediate">Intermediate</label>
           </div>
           <div class="radio">
@@ -50,9 +68,18 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <button id="reset" class="button">New Game</button>
+      <div id='container-score' class="display">
+        <h3>Guesses</h3>
+        <h3>Difficulty</h3>
+        <div class='display-number' id='score-guessess'>-</div>
+        <div class='display-number' id='score-difficulty'>-</div>
+      </div>
+
+    </div>
+    <!-- </div> -->
+
+    <button id="reset" class="button">Start New Game</button>
 
     <script src="/scripts/bundle.js"></script>
   </body>

@@ -9,15 +9,61 @@ html {
 }
 
 body {
-  background: pink;
+  background: linear-gradient(89deg, #ff5edf 0%, #04c8de 100%);
   color: #fafafa;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
   min-height: 100vh;
+}
+
+#container-img {
+  grid-column-start: 2;
+  margin-top: 50px;
+}
+
+#container-title {
+  display: flex;
+  font-size: 5rem;
+  font-weight: 600;
+  color: #2b292e;
+}
+
+#container-title span:hover {
+  -webkit-animation: jello 1s;
+  animation: jello 1s;
+}
+
+#container-score {
+  display: grid;
+  text-transform: uppercase;
+  grid-template-columns: 1fr 1fr;
+  grid-row-start: 2;
+}
+
+/* #container-score h2 {
+  border-bottom: 1px solid white;
+  grid-column-start: span 2;
+  padding: 0px 15px 5px 15px;
+} */
+
+#container-score h3 {
+  border-bottom: 1px solid white;
+  padding: 10px;
+  margin: 10px;
+}
+
+#difficulty {
+  grid-row-start: 2;
+  grid-column-start: 2;
+}
+
+#guesses {
+  grid-row-start: 2;
+  grid-column-start: 3;
 }
 
 img {
@@ -27,7 +73,7 @@ img {
   border-radius: 10px;
 }
 
-span {
+#puzzle span {
   border-bottom: 1px solid #534f59;
   display: inline-block;
   font-size: 3rem;
@@ -58,8 +104,28 @@ label {
   border-radius: 10px;
   padding: 30px;
   text-align: center;
+  min-width: 400px;
+  /* width: auto; */
+}
 
-  /* margin-bottom: 3rem; */
+.display-number {
+  font-size: 4rem;
+}
+
+.display-succes {
+  background-color: green;
+  border-color: black;
+}
+
+.display-fail {
+  background-color: red;
+  border-color: black;
+}
+
+.container-puzzle {
+  grid-row-start: 2;
+  grid-column-start: 2;
+  color: #fafafa;
 }
 
 .puzzle {
@@ -71,6 +137,8 @@ label {
 }
 
 .button {
+  grid-row-start: 3;
+  grid-column-start: 2;
   background: #7044a0;
   border: none;
   border-bottom: 2px solid #603a88;
@@ -88,7 +156,7 @@ label {
   background: #5f3a87;
 }
 
-.radio-container {
+.container-radio {
   display: grid;
   grid-template-columns: repeat(3, auto);
   grid-gap: 2rem;
@@ -100,12 +168,4 @@ label {
   grid-template-rows: 1fr 1fr;
   justify-items: center;
   margin-top: 0.5em;
-}
-
-.container_display {
-  display: inline-grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 3em;
-  justify-items: stretch;
-  justify-content: center;
 }
