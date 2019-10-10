@@ -33,8 +33,8 @@ body {
 }
 
 #container-title span:hover {
-  -webkit-animation: jello 1s;
-  animation: jello 1s;
+  -webkit-animation: slideOutUp 1s;
+  animation: slideOutUp 1s;
 }
 
 #container-score {
