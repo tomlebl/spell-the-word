@@ -29,6 +29,7 @@ const setGradient = (color1, color2) => {
 
 const renderImg = imgSrc => {
   picture.setAttribute('src', imgSrc)
+  picture.classList.add('picture')
   imgConstainer.appendChild(picture)
 }
 
