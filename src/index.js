@@ -52,6 +52,7 @@ const renderEmoji = () => {
 }
 
 const startPuzzle = () => {
+  //Remove success decoration
   puzzleContainer.classList.remove('display-succes')
   puzzleMessage.classList.remove('animated', 'tada')
   emojiContainer.forEach(element => {
@@ -59,10 +60,13 @@ const startPuzzle = () => {
   })
 
   let { word, imgSrc } = getPuzzle(game1.difficulty, game1.usedWords)
+
+  //Check if all puzzles have been used
   if (word === '' && game1.difficulty === 3) {
     puzzleMessage.textContent = 'All puzzles solved. Game over'
   } else {
     if (word === '') {
+      //All puzzles at given difficulty used -> increase difficulty
       game1.difficulty++
       difficultyDisplay.textContent = game1.difficulty
       const newPuzzle = getPuzzle(game1.difficulty, game1.usedWords)
@@ -70,6 +74,7 @@ const startPuzzle = () => {
       imgSrc = newPuzzle.imgSrc
       game1.status = 'difChange'
     }
+
     game1.usedWords.push(word)
     hangman1 = new Hangman(word, imgSrc, game1.remainingGuesses)
     setGradient(setRandomColour(), setRandomColour())
