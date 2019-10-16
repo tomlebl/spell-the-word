@@ -53,7 +53,8 @@ const renderEmoji = () => {
 }
 
 const startPuzzle = () => {
-  //Remove success decoration
+  //Removing success decoration
+  puzzleMessage.textContent = ''
   puzzleContainer.classList.remove('display-succes')
   puzzleMessage.classList.remove('animated', 'tada')
   emojiContainer.forEach(element => {
@@ -73,17 +74,12 @@ const startPuzzle = () => {
       const newPuzzle = getPuzzle(game1.difficulty, game1.usedWords)
       word = newPuzzle.word
       imgSrc = newPuzzle.imgSrc
-      game1.status = 'difChange'
+      puzzleMessage.textContent = 'Game difficulty was increased'
     }
 
     game1.usedWords.push(word)
     hangman1 = new Hangman(word, imgSrc, game1.remainingGuesses)
     setGradient(setRandomColour(), setRandomColour())
-
-    puzzleMessage.textContent =
-      game1.status === 'difChange' ? 'Game difficulty was increased' : ''
-
-    game1.status = 'playing'
 
     renderImg(hangman1.imgSrc)
     renderPuzzle()
@@ -95,7 +91,8 @@ const startGame = () => {
     location.reload()
   } else if (!game1) {
     game1 = new Game()
-    game1.status = 'playing'
+
+    //Replacing difficulty selection by puzzle display
     puzzleDisplay.innerHTML = '<div id="puzzle" class="puzzle">'
     puzzleContainer.classList.add('display', 'container-puzzle')
     guessesDisplay.textContent = game1.remainingGuesses
@@ -114,9 +111,10 @@ window.addEventListener('keypress', e => {
 
   if (hangman1.status === 'playing') {
     hangman1.makeGuess(guess)
-    game1.remainingGuesses = hangman1.remainingGuesses
-    guessesDisplay.textContent = game1.remainingGuesses
-    if (game1.remainingGuesses === 0) {
+    guessesDisplay.textContent = hangman1.remainingGuesses
+
+    //Finishing game when guesses count runs to 0
+    if (hangman1.status === 'failed') {
       puzzleMessage.textContent = 'Game Over!'
       puzzleContainer.classList.add('display-fail')
       hangman1.guessedLetters = hangman1.word
@@ -125,9 +123,11 @@ window.addEventListener('keypress', e => {
     }
   }
 
-  if (hangman1.status === 'finished' && game1.remainingGuesses > 0) {
+  // Starting a new puzzle if previous one is finished
+  if (hangman1.status === 'finished') {
     hangman1.status = 'pending'
     game1.score++
+    game1.remainingGuesses = hangman1.remainingGuesses
     puzzleContainer.classList.add('display-succes')
     puzzleMessage.classList.add('animated', 'tada')
     puzzleMessage.textContent = 'Well Done !!!'
