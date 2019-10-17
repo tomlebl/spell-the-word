@@ -3,7 +3,6 @@ class Game {
     this.score = 0
     this.difficulty = this.getDifficulty()
     this.remainingGuesses = 6 - this.difficulty
-    this.status = 'start'
     this.usedWords = []
     this.displayMessage = ''
   }

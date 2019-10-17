@@ -94,6 +94,8 @@ p {
 
 label {
   margin-top: 5px;
+  font-size: 3rem;
+  font-weight: 600;
 }
 
 .display {
