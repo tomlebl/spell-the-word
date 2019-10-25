@@ -57,7 +57,7 @@ const puzzles = [
   {
     word: 'owl',
     imgSrc: 'images/owl.jpeg',
-    difficulty: 1
+    difficulty: 2
   },
   {
     word: 'red grapes',
