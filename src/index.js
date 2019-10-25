@@ -1,6 +1,6 @@
 import Hangman from './hangman'
-import getPuzzle from './requests'
 import Game from './game'
+import { loadHiScore, saveHiScore, getPuzzle } from './requests'
 
 const body = document.querySelector('body')
 const difficultyEl = body.querySelector('#difficulty')
@@ -9,8 +9,9 @@ const resetButton = body.querySelector('#reset')
 const title = body.querySelector('#container-title')
 const emojiContainer = body.querySelectorAll('.container-emoji')
 const scoreCurrent = body.querySelector('#score-current')
-const guessesDisplay = body.querySelector('#score-guessess')
+const scoreBest = body.querySelector('#score-best')
 const difficultyDisplay = body.querySelector('#score-difficulty')
+const guessesDisplay = body.querySelector('#score-guessess')
 
 const picture = document.createElement('img')
 const puzzleDisplay = document.createElement('div')
@@ -43,10 +44,10 @@ const renderPuzzle = () => {
   })
 }
 
-const renderEmoji = () => {
+const renderEmoji = emojiStyle => {
   emojiContainer.forEach(element => {
     var emoji = document.createElement('img')
-    emoji.setAttribute('src', 'images/emoji-smiley.png')
+    emoji.setAttribute('src', `images/${emojiStyle}`)
     emoji.setAttribute('style', 'width: 300px')
     element.appendChild(emoji)
   })
@@ -106,20 +107,37 @@ const startGame = () => {
   }
 }
 
+const renderGameFailed = () => {
+  puzzleMessage.textContent = 'Game Over!'
+  puzzleContainer.classList.add('display-fail')
+  guessesDisplay.setAttribute('style', 'color: red')
+}
+
+const renderNewHiScore = () => {
+  puzzleMessage.textContent = 'Well Done! New Hi-Score'
+  puzzleContainer.classList.add('display-record')
+  scoreCurrent.setAttribute('style', 'color: plum')
+  scoreBest.setAttribute('style', 'color: plum')
+}
+
+scoreBest.textContent = loadHiScore()
+
 window.addEventListener('keypress', e => {
   const guess = String.fromCharCode(e.charCode)
 
   if (hangman1.status === 'playing') {
     hangman1.makeGuess(guess)
     guessesDisplay.textContent = hangman1.remainingGuesses
+  }
 
-    //Finishing game when guesses count runs to 0
-    if (hangman1.status === 'failed') {
-      puzzleMessage.textContent = 'Game Over!'
-      puzzleContainer.classList.add('display-fail')
-      hangman1.guessedLetters = hangman1.word
-      renderPuzzle()
-      return
+  //Finishing game when guesses count runs to 0
+  if (hangman1.status === 'failed') {
+    renderGameFailed()
+    hangman1.guessedLetters = hangman1.word
+    renderPuzzle()
+    if (game1.score > loadHiScore()) {
+      saveHiScore(game1.score)
+      setTimeout(renderNewHiScore, 2000)
     }
   }
 
@@ -131,7 +149,7 @@ window.addEventListener('keypress', e => {
     puzzleContainer.classList.add('display-succes')
     puzzleMessage.classList.add('animated', 'tada')
     puzzleMessage.textContent = 'Well Done !!!'
-    renderEmoji()
+    renderEmoji('emoji-smiley.png')
     scoreCurrent.textContent = game1.score
     setTimeout(startPuzzle, 2000)
   }

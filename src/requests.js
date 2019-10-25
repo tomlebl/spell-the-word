@@ -10,4 +10,14 @@ const getPuzzle = (difficulty, usedWords) => {
     : puzzlesFiltered[Math.floor(Math.random() * puzzlesFiltered.length)]
 }
 
-export { getPuzzle as default }
+const saveHiScore = score => {
+  localStorage.setItem('hiScore', JSON.stringify(score))
+}
+
+const loadHiScore = () => {
+  const scoreJSON = localStorage.getItem('hiScore')
+
+  return scoreJSON ? JSON.parse(scoreJSON) : 0
+}
+
+export { getPuzzle, saveHiScore, loadHiScore }
