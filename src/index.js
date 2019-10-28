@@ -1,6 +1,7 @@
 import Hangman from './hangman'
 import Game from './game'
 import { loadHiScore, saveHiScore, getPuzzle } from './requests'
+import 'particles.js'
 
 const body = document.querySelector('body')
 const difficultyEl = body.querySelector('#difficulty')
@@ -17,6 +18,10 @@ const picture = document.createElement('img')
 const puzzleDisplay = document.createElement('div')
 const puzzleContainer = document.createElement('div')
 const puzzleMessage = document.createElement('h3')
+
+particlesJS.load('particles-js', 'assets/particles.json', function() {
+  console.log('callback - particles.js config loaded')
+})
 
 let hangman1
 let game1

@@ -42,7 +42,7 @@ const puzzles = [
   {
     word: 'bird',
     imgSrc: 'images/bird.jpeg',
-    difficulty: 1
+    difficulty: 2
   },
   {
     word: 'banana',
