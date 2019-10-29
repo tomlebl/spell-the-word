@@ -6,6 +6,7 @@ To start game running in your local enviroment using live-server run
 
 ```
 npm install
+npm install particles.js
 npm run dev-server
 ```
 
