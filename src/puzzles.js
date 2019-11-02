@@ -16,12 +16,12 @@ const puzzles = [
   },
   {
     word: 'flower',
-    imgSrc: 'images/red_flower.jpg',
+    imgSrc: 'images/red_flower.jpeg',
     difficulty: 2
   },
   {
     word: 'red flower',
-    imgSrc: 'images/red_flower.jpg',
+    imgSrc: 'images/red_flower.jpeg',
     difficulty: 3
   },
   {
@@ -78,6 +78,46 @@ const puzzles = [
     word: 'robin',
     imgSrc: 'images/bird.jpeg',
     difficulty: 3
+  },
+  {
+    word: 'ball',
+    imgSrc: 'images/ball.jpeg',
+    difficulty: 1
+  },
+  {
+    word: 'spoon',
+    imgSrc: 'images/spoon.jpeg',
+    difficulty: 2
+  },
+  {
+    word: 'mug',
+    imgSrc: 'images/mug.jpeg',
+    difficulty: 1
+  },
+  {
+    word: 'cup',
+    imgSrc: 'images/cup.jpeg',
+    difficulty: 1
+  },
+  {
+    word: 'sun',
+    imgSrc: 'images/sun.png',
+    difficulty: 1
+  },
+  {
+    word: 'jug',
+    imgSrc: 'images/jug.jpeg',
+    difficulty: 1
+  },
+  {
+    word: 'gate',
+    imgSrc: 'images/gate.jpeg',
+    difficulty: 2
+  },
+  {
+    word: 'moon',
+    imgSrc: 'images/moon.jpeg',
+    difficulty: 1
   }
 ]
 

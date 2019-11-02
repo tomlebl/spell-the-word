@@ -1,6 +1,6 @@
 import Hangman from './hangman'
 import Game from './game'
-import { loadHiScore, saveHiScore, getPuzzle } from './requests'
+import { loadHiScore, saveHiScore, getPuzzle, getPuzzleCount } from './requests'
 import 'particles.js'
 
 const body = document.querySelector('body')
@@ -26,6 +26,10 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 let hangman1
 let game1
 
+for (let i = 1; i <= 3; i++) {
+  console.log(`Difficulty ${i}:`, getPuzzleCount(i))
+}
+
 const setRandomColour = () =>
   '#' + (Math.random().toString(16) + '000000').slice(2, 8).slice(-6)
 
@@ -35,7 +39,7 @@ const setGradient = (color1, color2) => {
 
 const renderImg = imgSrc => {
   picture.setAttribute('src', imgSrc)
-  picture.classList.add('picture')
+  picture.classList.add('picture', 'animated', 'bounceIn')
   imgConstainer.appendChild(picture)
 }
 
@@ -54,6 +58,7 @@ const renderEmoji = emojiStyle => {
     var emoji = document.createElement('img')
     emoji.setAttribute('src', `images/${emojiStyle}`)
     emoji.setAttribute('style', 'width: 300px')
+    emoji.classList.add('animated', 'zoomInDown')
     element.appendChild(emoji)
   })
 }
@@ -80,7 +85,12 @@ const startPuzzle = () => {
       const newPuzzle = getPuzzle(game1.difficulty, game1.usedWords)
       word = newPuzzle.word
       imgSrc = newPuzzle.imgSrc
+      puzzleContainer.classList.add('display-record')
       puzzleMessage.textContent = 'Game difficulty was increased'
+      setTimeout(() => {
+        puzzleContainer.classList.remove('display-record')
+        puzzleMessage.textContent = ''
+      }, 3000)
     }
 
     game1.usedWords.push(word)
@@ -116,6 +126,8 @@ const renderGameFailed = () => {
   puzzleMessage.textContent = 'Game Over!'
   puzzleContainer.classList.add('display-fail')
   guessesDisplay.setAttribute('style', 'color: red')
+  renderEmoji('emoji-cross.png')
+  hangman1.status = 'game over'
 }
 
 const renderNewHiScore = () => {
@@ -141,6 +153,7 @@ window.addEventListener('keypress', e => {
     hangman1.guessedLetters = hangman1.word
     renderPuzzle()
     if (game1.score > loadHiScore()) {
+      scoreBest.textContent = game1.score
       saveHiScore(game1.score)
       setTimeout(renderNewHiScore, 2000)
     }
@@ -149,7 +162,7 @@ window.addEventListener('keypress', e => {
   // Starting a new puzzle if previous one is finished
   if (hangman1.status === 'finished') {
     hangman1.status = 'pending'
-    game1.score++
+    game1.score += game1.difficulty
     game1.remainingGuesses = hangman1.remainingGuesses
     puzzleContainer.classList.add('display-succes')
     puzzleMessage.classList.add('animated', 'tada')

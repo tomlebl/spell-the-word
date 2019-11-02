@@ -20,4 +20,11 @@ const loadHiScore = () => {
   return scoreJSON ? JSON.parse(scoreJSON) : 0
 }
 
-export { getPuzzle, saveHiScore, loadHiScore }
+const getPuzzleCount = difficulty => {
+  const puzzleArrayFiltered = puzzles.filter(
+    puzzle => puzzle.difficulty === difficulty
+  )
+  return puzzleArrayFiltered.length
+}
+
+export { getPuzzle, saveHiScore, loadHiScore, getPuzzleCount }
