@@ -19,6 +19,10 @@ const puzzleDisplay = document.createElement('div')
 const puzzleContainer = document.createElement('div')
 const puzzleMessage = document.createElement('h3')
 
+const snd_succes = new Audio('sounds/achievement.mp3')
+const snd_start = new Audio('sounds/fairy_godmother.mp3')
+const snd_end = new Audio('sounds/end.mp3')
+
 particlesJS.load('particles-js', 'assets/particles.json', function() {
   console.log('callback - particles.js config loaded')
 })
@@ -82,6 +86,8 @@ const startPuzzle = () => {
       //All puzzles at given difficulty used -> increase difficulty
       game1.difficulty++
       difficultyDisplay.textContent = game1.difficulty
+      const difColor = game1.difficulty === 2 ? 'acqua' : 'red'
+      difficultyDisplay.setAttribute('style', `color: ${difColor}`)
       const newPuzzle = getPuzzle(game1.difficulty, game1.usedWords)
       word = newPuzzle.word
       imgSrc = newPuzzle.imgSrc
@@ -99,6 +105,7 @@ const startPuzzle = () => {
 
     renderImg(hangman1.imgSrc)
     renderPuzzle()
+    snd_start.play()
   }
 }
 
@@ -118,6 +125,21 @@ const startGame = () => {
     resetButton.textContent = 'Reset the Game'
     imgConstainer.removeChild(title)
     difficultyDisplay.textContent = game1.difficulty
+    let difColor
+    switch (game1.difficulty) {
+      case 1:
+        difColor = 'lightgreen'
+        break
+      case 2:
+        difColor = 'aqua'
+        break
+      case 3:
+        difColor = 'red'
+        break
+      default:
+        difColor = 'white'
+    }
+    difficultyDisplay.setAttribute('style', `color: ${difColor}`)
     startPuzzle()
   }
 }
@@ -127,6 +149,7 @@ const renderGameFailed = () => {
   puzzleContainer.classList.add('display-fail')
   guessesDisplay.setAttribute('style', 'color: red')
   renderEmoji('emoji-cross.png')
+  snd_end.play()
   hangman1.status = 'game over'
 }
 
@@ -167,6 +190,7 @@ window.addEventListener('keypress', e => {
     puzzleContainer.classList.add('display-succes')
     puzzleMessage.classList.add('animated', 'tada')
     puzzleMessage.textContent = 'Well Done !!!'
+    snd_succes.play()
     renderEmoji('emoji-smiley.png')
     scoreCurrent.textContent = game1.score
     setTimeout(startPuzzle, 2000)

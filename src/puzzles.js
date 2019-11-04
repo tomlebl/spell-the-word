@@ -118,7 +118,10 @@ const puzzles = [
     word: 'moon',
     imgSrc: 'images/moon.jpeg',
     difficulty: 1
-  }
+  },
+  { word: 'cactus', imgSrc: 'images/cactus.jpeg', difficulty: 3 },
+  { word: 'sheep', imgSrc: 'images/sheep.jpeg', difficulty: 2 },
+  { word: 'bowl', imgSrc: 'images/bowl.jpg', difficulty: 2 }
 ]
 
 export { puzzles as default }
