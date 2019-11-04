@@ -20,6 +20,15 @@ body {
   min-height: 100vh;
 }
 
+.particles-js-canvas-el {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
 #container-img {
   grid-column-start: 2;
   margin-top: 50px;
@@ -29,7 +38,7 @@ body {
   display: flex;
   font-size: 5rem;
   font-weight: 600;
-  color: #2b292e;
+  color: rgb(37, 35, 35);
 }
 
 #container-title span:hover {
@@ -43,12 +52,6 @@ body {
   grid-template-columns: 1fr 1fr;
   grid-row-start: 2;
 }
-
-/* #container-score h2 {
-  border-bottom: 1px solid white;
-  grid-column-start: span 2;
-  padding: 0px 15px 5px 15px;
-} */
 
 #container-score h3 {
   border-bottom: 1px solid white;
@@ -107,7 +110,11 @@ label {
   padding: 30px;
   text-align: center;
   min-width: 400px;
-  /* width: auto; */
+}
+
+.display:hover {
+  -webkit-animation: shake 1s;
+  animation: shake 1s;
 }
 
 .display-number {
@@ -152,15 +159,17 @@ label {
   border-radius: 5px;
   cursor: pointer;
   color: white;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 300;
-  padding: 0.8rem;
+  padding: 0.9rem;
   margin: 2rem;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
 .button:hover {
   background: #5f3a87;
+  -webkit-animation: pulse 1s;
+  animation: pulse 1s;
 }
 
 .container-radio {
