@@ -19,9 +19,10 @@ const puzzleDisplay = document.createElement('div')
 const puzzleContainer = document.createElement('div')
 const puzzleMessage = document.createElement('h3')
 
-const snd_succes = new Audio('sounds/achievement.mp3')
+const snd_succes = new Audio('sounds/tada.mp3')
 const snd_start = new Audio('sounds/fairy_godmother.mp3')
 const snd_end = new Audio('sounds/end.mp3')
+const snd_achievement = new Audio('sounds/achievement.mp3')
 
 particlesJS.load('particles-js', 'assets/particles.json', function() {
   console.log('callback - particles.js config loaded')
@@ -93,6 +94,7 @@ const startPuzzle = () => {
       imgSrc = newPuzzle.imgSrc
       puzzleContainer.classList.add('display-record')
       puzzleMessage.textContent = 'Game difficulty was increased'
+      snd_achievement.play()
       setTimeout(() => {
         puzzleContainer.classList.remove('display-record')
         puzzleMessage.textContent = ''
@@ -158,6 +160,7 @@ const renderNewHiScore = () => {
   puzzleContainer.classList.add('display-record')
   scoreCurrent.setAttribute('style', 'color: plum')
   scoreBest.setAttribute('style', 'color: plum')
+  snd_achievement.play()
 }
 
 scoreBest.textContent = loadHiScore()
