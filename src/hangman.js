@@ -8,6 +8,8 @@ class Hangman {
     this.guessedLetters = []
     this.wordToGuess = word.toLowerCase()
     this.status = 'playing'
+    this.snd_key_press_bad = new Audio('sounds/key_press_bad.mp3')
+    this.snd_key_press = new Audio('sounds/key_press.mp3')
   }
   makeGuess(guess) {
     guess = guess.toLowerCase()
@@ -20,25 +22,17 @@ class Hangman {
 
     if (isUnique) {
       //this.guessedLetters.push(guess)
+      this.snd_key_press.play()
       this.guessedLetters = [...this.guessedLetters, guess]
     }
 
     if (isUnique && isBadGuess) {
       this.remainingGuesses--
+      this.snd_key_press_bad.play()
     }
 
     this.checkStatus()
   }
-
-  // get statusMessage() {
-  //   if (this.status === 'finished') {
-  //     return 'Great work! You guessed the word.'
-  //   } else if (this.status === 'failed') {
-  //     return `Nice try! The word was "${this.wordToGuess}".`
-  //   } else {
-  //     return `You have ${this.remainingGuesses} remaining guesses`
-  //   }
-  // }
 
   get puzzle() {
     let puzzle = ''
