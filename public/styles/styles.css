@@ -13,11 +13,16 @@ body {
   color: #fafafa;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
+}
+
+.container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   justify-items: center;
-  min-height: 100vh;
+  grid-column-gap: 20px;
+  /* min-height: 100vh; */
+  max-height: 800vh;
 }
 
 .particles-js-canvas-el {
@@ -39,6 +44,8 @@ body {
   font-size: 5rem;
   font-weight: 600;
   color: rgb(37, 35, 35);
+  margin-bottom: 50px;
+  margin-top: 100px;
 }
 
 #container-title span:hover {
@@ -184,4 +191,10 @@ label {
   grid-template-rows: 1fr 1fr;
   justify-items: center;
   margin-top: 0.5em;
+}
+
+@media only screen and (max-width: 800px) {
+  body {
+    font-size: 0.6rem;
+  }
 }

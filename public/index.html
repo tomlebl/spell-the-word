@@ -3,61 +3,88 @@
   <head>
     <title>Spell The Word</title>
     <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+    />
     <link rel="icon" href="images/spell.png" />
   </head>
   <body id="particles-js">
-    
-    <div class="container-emoji"></div>
-    
-    <div id="container-img">
-      <div id='container-title'>
-        <span class="animated bounceInDown">S</span>
-        <span class="animated bounceInDown" style="animation-delay: 100ms">p</span>
-        <span class="animated bounceInDown" style="animation-delay: 200ms">e</span>
-        <span class="animated bounceInDown" style="animation-delay: 300ms">l</span>
-        <span class="animated bounceInDown" style="margin-right: 5px; animation-delay: 400ms">l</span>
-        <span class="animated bounceInDown" style="animation-delay: 500ms">T</span>
-        <span class="animated bounceInDown" style="animation-delay: 600ms">h</span>
-        <span class="animated bounceInDown" style="margin-right: 5px; animation-delay: 700ms">e</span>
-        <span class="animated bounceInDown" style="animation-delay: 800ms">W</span>
-        <span class="animated bounceInDown" style="animation-delay: 900ms">o</span>
-        <span class="animated bounceInDown" style="animation-delay: 1000ms">r</span>
-        <span class="animated bounceInDown" style="animation-delay: 1100ms">d</span>
+    <div class="container">
+      <div class="container-emoji"></div>
 
+      <div id="container-img">
+        <div id="container-title">
+          <span class="animated bounceInDown">S</span>
+          <span class="animated bounceInDown" style="animation-delay: 100ms"
+            >p</span
+          >
+          <span class="animated bounceInDown" style="animation-delay: 200ms"
+            >e</span
+          >
+          <span class="animated bounceInDown" style="animation-delay: 300ms"
+            >l</span
+          >
+          <span
+            class="animated bounceInDown"
+            style="margin-right: 5px; animation-delay: 400ms"
+            >l</span
+          >
+          <span class="animated bounceInDown" style="animation-delay: 500ms"
+            >T</span
+          >
+          <span class="animated bounceInDown" style="animation-delay: 600ms"
+            >h</span
+          >
+          <span
+            class="animated bounceInDown"
+            style="margin-right: 5px; animation-delay: 700ms"
+            >e</span
+          >
+          <span class="animated bounceInDown" style="animation-delay: 800ms"
+            >W</span
+          >
+          <span class="animated bounceInDown" style="animation-delay: 900ms"
+            >o</span
+          >
+          <span class="animated bounceInDown" style="animation-delay: 1000ms"
+            >r</span
+          >
+          <span class="animated bounceInDown" style="animation-delay: 1100ms"
+            >d</span
+          >
+        </div>
+      </div>
 
-       </div>
-    </div>
+      <div class="container-emoji"></div>
 
-    <div class="container-emoji"></div>
-       
-    <div id='container-score' class="display">
-      <h3>Hi-Score</h3>
-      <h3>Score</h3>
-      <div class='display-number' id='score-best'></div>
-      <div class='display-number' id='score-current'>0</div>
-    </div>
-      
-    <div id="difficulty" class="display">
+      <div id="container-score" class="display">
+        <h3>Hi-Score</h3>
+        <h3>Score</h3>
+        <div class="display-number" id="score-best"></div>
+        <div class="display-number" id="score-current">0</div>
+      </div>
+
+      <div id="difficulty" class="display">
         <h2>Select difficulty:</h2>
         <div class="container-radio">
-            <div class="radio">
-              <input
+          <div class="radio">
+            <input
               type="radio"
               id="beginner"
               name="difficulty"
               value="beginner"
               checked
-              />
-              <label style="color: lightgreen" for="beginner">1</label>
-            </div>
+            />
+            <label style="color: lightgreen" for="beginner">1</label>
+          </div>
           <div class="radio">
-              <input
+            <input
               type="radio"
               id="intermediate"
               name="difficulty"
               value="intermediate"
-              />
+            />
             <label style="color: aqua" for="intermediate">2</label>
           </div>
           <div class="radio">
@@ -72,18 +99,15 @@
         </div>
       </div>
 
-      <div id='container-score' class="display">
+      <div id="container-score" class="display">
         <h3>Guesses</h3>
         <h3>Difficulty</h3>
-        <div class='display-number' id='score-guessess'>-</div>
-        <div class='display-number' id='score-difficulty'>-</div>
+        <div class="display-number" id="score-guessess">-</div>
+        <div class="display-number" id="score-difficulty">-</div>
       </div>
-
+      <button id="reset" class="button">Start New Game</button>
     </div>
-    <!-- </div> -->
 
-    <button id="reset" class="button">Start New Game</button>
-    
     <script src="/scripts/bundle.js"></script>
   </body>
 </html>
