@@ -121,7 +121,9 @@ const puzzles = [
   },
   { word: 'cactus', imgSrc: 'images/cactus.jpeg', difficulty: 3 },
   { word: 'sheep', imgSrc: 'images/sheep.jpeg', difficulty: 2 },
-  { word: 'bowl', imgSrc: 'images/bowl.jpg', difficulty: 2 }
+  { word: 'bowl', imgSrc: 'images/bowl.jpg', difficulty: 2 },
+  { word: 'piano', imgSrc: 'images/piano.jpeg', difficulty: 2 },
+  { word: 'log', imgSrc: 'images/log.jpeg', difficulty: 1 }
 ]
 
 export { puzzles as default }

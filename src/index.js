@@ -68,6 +68,24 @@ const renderEmoji = emojiStyle => {
   })
 }
 
+const setDifColor = dif => {
+  let difColor
+  switch (dif) {
+    case 1:
+      difColor = 'lightgreen'
+      break
+    case 2:
+      difColor = 'aqua'
+      break
+    case 3:
+      difColor = 'red'
+      break
+    default:
+      difColor = 'white'
+  }
+  difficultyDisplay.setAttribute('style', `color: ${difColor}`)
+}
+
 const startPuzzle = () => {
   //Removing success decoration
   puzzleMessage.textContent = ''
@@ -95,6 +113,7 @@ const startPuzzle = () => {
       puzzleContainer.classList.add('display-record')
       puzzleMessage.textContent = 'Game difficulty was increased'
       snd_achievement.play()
+      setDifColor(game1.difficulty)
       setTimeout(() => {
         puzzleContainer.classList.remove('display-record')
         puzzleMessage.textContent = ''
@@ -127,21 +146,7 @@ const startGame = () => {
     resetButton.textContent = 'Reset the Game'
     imgConstainer.removeChild(title)
     difficultyDisplay.textContent = game1.difficulty
-    let difColor
-    switch (game1.difficulty) {
-      case 1:
-        difColor = 'lightgreen'
-        break
-      case 2:
-        difColor = 'aqua'
-        break
-      case 3:
-        difColor = 'red'
-        break
-      default:
-        difColor = 'white'
-    }
-    difficultyDisplay.setAttribute('style', `color: ${difColor}`)
+    setDifColor(game1.difficulty)
     startPuzzle()
   }
 }
