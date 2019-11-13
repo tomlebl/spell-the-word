@@ -169,7 +169,7 @@ label {
   font-size: 1.6rem;
   font-weight: 300;
   padding: 0.9rem;
-  margin: 2rem;
+  margin: 6rem;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
@@ -193,8 +193,28 @@ label {
   margin-top: 0.5em;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1024px) {
   body {
-    font-size: 0.6rem;
+    font-size: 1.4rem;
+  }
+  .container {
+    grid-column-gap: 0px;
+  }
+  .display-number {
+    font-size: 3rem;
+  }
+  .display {
+    padding: 10px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-align: center;
+    min-width: 300px;
+    margin: 0px;
+  }
+  .picture {
+    max-width: 350px;
+  }
+  label {
+    font-size: 2.5rem;
   }
 }
