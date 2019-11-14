@@ -1,200 +1,245 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 html {
-  font-size: 62.5%;
+	font-size: 62.5%;
 }
 
 body {
-  background: linear-gradient(89deg, #ff5edf 0%, #04c8de 100%);
-  color: #fafafa;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 1.6rem;
+	background: linear-gradient(89deg, #ff5edf 0%, #04c8de 100%);
+	color: #fafafa;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1.6rem;
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-  grid-column-gap: 20px;
-  /* min-height: 100vh; */
-  max-height: 800vh;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: center;
+	justify-items: center;
+	grid-column-gap: 20px;
+	max-height: 800vh;
 }
 
 .particles-js-canvas-el {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
 }
 
 #container-img {
-  grid-column-start: 2;
-  margin-top: 50px;
+	grid-column-start: 2;
+	margin-top: 50px;
 }
 
 #container-title {
-  display: flex;
-  font-size: 5rem;
-  font-weight: 600;
-  color: rgb(37, 35, 35);
-  margin-bottom: 50px;
-  margin-top: 100px;
+	display: flex;
+	font-size: 5rem;
+	font-weight: 600;
+	color: rgb(37, 35, 35);
+	margin-bottom: 50px;
+	margin-top: 70px;
 }
 
 #container-title span:hover {
-  -webkit-animation: bounceOutUp 1s;
-  animation: bounceOutUp 1s;
+	-webkit-animation: bounceOutUp 1s;
+	animation: bounceOutUp 1s;
 }
 
 #container-score {
-  display: grid;
-  text-transform: uppercase;
-  grid-template-columns: 1fr 1fr;
-  grid-row-start: 2;
+	display: grid;
+	text-transform: uppercase;
+	grid-template-columns: 1fr 1fr;
+	grid-row-start: 2;
 }
 
 #container-score h3 {
-  border-bottom: 1px solid white;
-  padding: 10px;
-  margin: 10px;
+	border-bottom: 1px solid white;
+	padding: 10px;
+	margin: 10px;
 }
 
 #difficulty {
-  grid-row-start: 2;
-  grid-column-start: 2;
+	grid-row-start: 2;
+	grid-column-start: 2;
 }
 
 #guesses {
-  grid-row-start: 2;
-  grid-column-start: 3;
+	grid-row-start: 2;
+	grid-column-start: 3;
 }
 
 .picture {
-  max-height: 300px;
-  margin-bottom: 3rem;
-  border: 3px solid white;
-  border-radius: 10px;
+	max-height: 300px;
+	max-width: 450px;
+	margin-bottom: 3rem;
+	border: 3px solid white;
+	border-radius: 10px;
 }
 
 #puzzle span {
-  border-bottom: 1px solid #534f59;
-  display: inline-block;
-  font-size: 3rem;
-  height: 2.4rem;
-  line-height: 2.4rem;
-  margin: 0 0.3rem;
-  text-align: center;
-  text-transform: uppercase;
-  width: 2.4rem;
-  padding-bottom: 2rem;
+	border-bottom: 1px solid #534f59;
+	display: inline-block;
+	font-size: 3rem;
+	height: 2.4rem;
+	line-height: 2.4rem;
+	margin: 0 0.3rem;
+	text-align: center;
+	text-transform: uppercase;
+	width: 2.4rem;
+	padding-bottom: 2rem;
 }
 
 p {
-  font-weight: 300;
-  margin-bottom: 0.8rem;
-  text-align: center;
+	font-weight: 300;
+	margin-bottom: 0.8rem;
+	text-align: center;
 }
 
 label {
-  margin-top: 5px;
-  font-size: 3rem;
-  font-weight: 600;
+	margin-top: 5px;
+	font-size: 3rem;
+	font-weight: 600;
 }
 
 .display {
-  display: grid;
-  align-items: center;
-  background: #2b292e;
-  border: 3px solid white;
-  border-radius: 10px;
-  padding: 30px;
-  text-align: center;
-  min-width: 400px;
+	display: grid;
+	align-items: center;
+	background: #2b292e;
+	border: 3px solid white;
+	border-radius: 10px;
+	padding: 30px;
+	text-align: center;
+	min-width: 400px;
 }
 
 .display:hover {
-  -webkit-animation: shake 1s;
-  animation: shake 1s;
+	-webkit-animation: shake 1s;
+	animation: shake 1s;
 }
 
 .display-number {
-  font-size: 4rem;
+	font-size: 4rem;
 }
 
 .display-succes {
-  background-color: green;
-  border-color: black;
+	background-color: green;
+	border-color: black;
 }
 
 .display-fail {
-  background-color: red;
-  border-color: black;
+	background-color: red;
+	border-color: black;
 }
 
 .display-record {
-  background-color: #7044a0;
-  border-color: black;
+	background-color: #7044a0;
+	border-color: black;
 }
 
 .container-puzzle {
-  grid-row-start: 2;
-  grid-column-start: 2;
-  color: #fafafa;
+	grid-row-start: 2;
+	grid-column-start: 2;
+	color: #fafafa;
 }
 
 .puzzle {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
-  font-size: 5r;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 2rem;
+	margin-top: 2rem;
+	font-size: 5r;
+}
+
+.emojiImg {
+	max-width: 300px;
 }
 
 .button {
-  grid-row-start: 3;
-  grid-column-start: 2;
-  background: #7044a0;
-  border: none;
-  border-bottom: 2px solid #603a88;
-  border-radius: 5px;
-  cursor: pointer;
-  color: white;
-  font-size: 1.6rem;
-  font-weight: 300;
-  padding: 0.9rem;
-  margin: 2rem;
-  transition: background 0.3s ease, color 0.3s ease;
+	grid-row-start: 3;
+	grid-column-start: 2;
+	background: #7044a0;
+	border: none;
+	border-bottom: 2px solid #603a88;
+	border-radius: 5px;
+	cursor: pointer;
+	color: white;
+	font-size: 1.6rem;
+	font-weight: 300;
+	padding: 0.9rem;
+	margin: 6rem;
+	transition: background 0.3s ease, color 0.3s ease;
 }
 
 .button:hover {
-  background: #5f3a87;
-  -webkit-animation: pulse 1s;
-  animation: pulse 1s;
+	background: #5f3a87;
+	-webkit-animation: pulse 1s;
+	animation: pulse 1s;
 }
 
 .container-radio {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-gap: 2rem;
-  margin-top: 2rem;
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	grid-gap: 2rem;
+	margin-top: 2rem;
 }
 
 .radio {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  justify-items: center;
-  margin-top: 0.5em;
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	justify-items: center;
+	margin-top: 0.5em;
 }
 
-@media only screen and (max-width: 800px) {
-  body {
-    font-size: 0.6rem;
-  }
+@media only screen and (max-width: 1024px) {
+	body {
+		font-size: 1.3rem;
+	}
+	.container {
+		grid-column-gap: 0px;
+	}
+	#container-title {
+		font-size: 4rem;
+	}
+	.display-number {
+		font-size: 3rem;
+	}
+	.display {
+		padding: 10px;
+		padding-bottom: 20px;
+		padding-top: 20px;
+		text-align: center;
+		margin: 0px;
+		min-width: 300px;
+	}
+
+	/* #container-score {
+    max-width: 200px;
+  }*/
+
+	#container-puzzle {
+		max-width: 350px;
+	}
+
+	.display-number {
+		font-size: 3rem;
+	}
+	#puzzle span {
+		font-size: 2rem;
+	}
+	.picture {
+		max-width: 300px;
+	}
+	.emojiImg {
+		max-width: 200px;
+	}
+	label {
+		font-size: 2.5rem;
+	}
 }
