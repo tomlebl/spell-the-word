@@ -56,8 +56,7 @@ const renderEmoji = emojiStyle => {
 	emojiContainer.forEach(element => {
 		var emoji = document.createElement('img')
 		emoji.setAttribute('src', `images/${emojiStyle}`)
-		emoji.setAttribute('style', 'width: 300px')
-		emoji.classList.add('animated', 'zoomInDown')
+		emoji.classList.add('animated', 'zoomInDown', 'emojiImg')
 		element.appendChild(emoji)
 	})
 }
@@ -80,6 +79,22 @@ const setDifColor = dif => {
 	difficultyDisplay.setAttribute('style', `color: ${difColor}`)
 }
 
+const renderNewHiScore = () => {
+	puzzleMessage.textContent = 'Well Done! New Hi-Score'
+	puzzleContainer.classList.add('display-record')
+	scoreCurrent.setAttribute('style', 'color: plum')
+	scoreBest.setAttribute('style', 'color: plum')
+	snd_achievement.play()
+}
+
+const checkHiScore = () => {
+	if (game1.score > loadHiScore()) {
+		scoreBest.textContent = game1.score
+		saveHiScore(game1.score)
+		setTimeout(renderNewHiScore, 2000)
+	}
+}
+
 const startPuzzle = () => {
 	//Removing success decoration
 	puzzleMessage.textContent = ''
@@ -94,6 +109,7 @@ const startPuzzle = () => {
 	//Check if all puzzles have been used
 	if (word === '' && game1.difficulty === 3) {
 		puzzleMessage.textContent = 'All puzzles solved. Game over'
+		checkHiScore()
 	} else {
 		if (word === '') {
 			//All puzzles at given difficulty used -> increase difficulty
@@ -117,10 +133,6 @@ const startPuzzle = () => {
 		game1.usedWords.push(word)
 		hangman1 = new Hangman(word, imgSrc, game1.remainingGuesses)
 		setGradient(setRandomColour(), setRandomColour())
-
-		// if (imgContainer.hasChildNodes()) {
-		// 	imgContainer.removeChild(picture)
-		// }
 
 		loadImg(hangman1.imgSrc)
 			.then(imgElement => {

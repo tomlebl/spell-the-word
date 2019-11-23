@@ -43,7 +43,6 @@ a {
 	align-items: center;
 	justify-items: center;
 	grid-column-gap: 20px;
-	/* min-height: 100vh; */
 	max-height: 800vh;
 }
 
@@ -67,7 +66,7 @@ a {
 	font-weight: 600;
 	color: rgb(37, 35, 35);
 	margin-bottom: 50px;
-	margin-top: 100px;
+	margin-top: 70px;
 }
 
 #container-title span:hover {
@@ -100,6 +99,7 @@ a {
 
 .picture {
 	max-height: 300px;
+	max-width: 450px;
 	margin-bottom: 3rem;
 	border: 3px solid white;
 	border-radius: 10px;
@@ -179,6 +179,10 @@ label {
 	font-size: 5r;
 }
 
+.emojiImg {
+	max-width: 300px;
+}
+
 .button {
 	grid-row-start: 3;
 	grid-column-start: 2;
@@ -217,10 +221,13 @@ label {
 
 @media only screen and (max-width: 1024px) {
 	body {
-		font-size: 1.4rem;
+		font-size: 1.3rem;
 	}
 	.container {
 		grid-column-gap: 0px;
+	}
+	#container-title {
+		font-size: 4rem;
 	}
 	.display-number {
 		font-size: 3rem;
@@ -230,11 +237,29 @@ label {
 		padding-bottom: 20px;
 		padding-top: 20px;
 		text-align: center;
-		min-width: 300px;
 		margin: 0px;
+		min-width: 300px;
+	}
+
+	/* #container-score {
+    max-width: 200px;
+  }*/
+
+	#container-puzzle {
+		max-width: 350px;
+	}
+
+	.display-number {
+		font-size: 3rem;
+	}
+	#puzzle span {
+		font-size: 2rem;
 	}
 	.picture {
-		max-width: 350px;
+		max-width: 300px;
+	}
+	.emojiImg {
+		max-width: 200px;
 	}
 	label {
 		font-size: 2.5rem;
