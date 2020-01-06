@@ -180,14 +180,6 @@ const renderGameFailed = () => {
 	hangman1.status = 'game over'
 }
 
-const renderNewHiScore = () => {
-	puzzleMessage.textContent = 'Well Done! New Hi-Score'
-	puzzleContainer.classList.add('display-record')
-	scoreCurrent.setAttribute('style', 'color: plum')
-	scoreBest.setAttribute('style', 'color: plum')
-	snd_achievement.play()
-}
-
 scoreBest.textContent = loadHiScore()
 
 window.addEventListener('keypress', e => {
