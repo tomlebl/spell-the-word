@@ -1,23 +1,8 @@
 import puzzles from './puzzles'
 
-const getPuzzle = (difficulty, usedWords) => {
-	const puzzlesFiltered = puzzles
-		.filter(puzzle => puzzle.difficulty === difficulty)
-		.filter(puzzle => !usedWords.includes(puzzle.word))
-
-	return puzzlesFiltered.length === 0
-		? { word: '' }
-		: puzzlesFiltered[Math.floor(Math.random() * puzzlesFiltered.length)]
-}
-
-const getcustomPuzzles = () => {
+const getCustomPuzzles = () => {
 	const puzzlesJSON = localStorage.getItem('puzzles')
-	console.log(puzzlesJSON)
 	return puzzlesJSON ? JSON.parse(puzzlesJSON) : []
-}
-
-const saveHiScore = score => {
-	localStorage.setItem('hiScore', JSON.stringify(score))
 }
 
 const loadHiScore = () => {
@@ -43,4 +28,4 @@ const loadImg = imgSrc =>
 		image.src = imgSrc
 	})
 
-export { getPuzzle, saveHiScore, loadHiScore, getPuzzleCount, loadImg, getcustomPuzzles }
+export { loadHiScore, getPuzzleCount, loadImg, getCustomPuzzles }

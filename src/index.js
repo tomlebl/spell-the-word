@@ -1,6 +1,6 @@
 import Hangman from './hangman'
 import Game from './game'
-import { loadHiScore, saveHiScore, getPuzzle, getPuzzleCount, loadImg } from './requests'
+import { loadHiScore, getPuzzleCount, loadImg } from './requests'
 import 'particles.js'
 
 const body = document.querySelector('body')
@@ -90,7 +90,7 @@ const renderNewHiScore = () => {
 const checkHiScore = () => {
 	if (game1.score > loadHiScore()) {
 		scoreBest.textContent = game1.score
-		saveHiScore(game1.score)
+		game1.saveHiScore()
 		setTimeout(renderNewHiScore, 2000)
 	}
 }
@@ -104,7 +104,9 @@ const startPuzzle = () => {
 		element.innerHTML = ''
 	})
 
-	let { word, imgSrc } = getPuzzle(game1.difficulty, game1.usedWords)
+	let { word, imgSrc } = game1.getPuzzle()
+
+	console.log(word, imgSrc)
 
 	//Check if all puzzles have been used
 	if (word === '' && game1.difficulty === 3) {
@@ -117,7 +119,7 @@ const startPuzzle = () => {
 			difficultyDisplay.textContent = game1.difficulty
 			const difColor = game1.difficulty === 2 ? 'acqua' : 'red'
 			difficultyDisplay.setAttribute('style', `color: ${difColor}`)
-			const newPuzzle = getPuzzle(game1.difficulty, game1.usedWords)
+			const newPuzzle = game1.getPuzzle()
 			word = newPuzzle.word
 			imgSrc = newPuzzle.imgSrc
 			puzzleContainer.classList.add('display-record')
@@ -197,7 +199,7 @@ window.addEventListener('keypress', e => {
 		renderPuzzle()
 		if (game1.score > loadHiScore()) {
 			scoreBest.textContent = game1.score
-			saveHiScore(game1.score)
+			game1.saveHiScore()
 			setTimeout(renderNewHiScore, 2000)
 		}
 	}

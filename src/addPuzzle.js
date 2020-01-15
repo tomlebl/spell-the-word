@@ -1,5 +1,5 @@
 import 'particles.js'
-import { loadImg, getcustomPuzzles } from './requests'
+import { loadImg, getCustomPuzzles } from './requests'
 
 particlesJS.load('particles-js', 'assets/particles.json', function() {
 	console.log('callback - particles.js config loaded')
@@ -7,7 +7,7 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 
 const puzzleObj = {
 	word: '',
-	imgUrl: '',
+	imgSrc: '',
 	difficulty: 1
 }
 
@@ -25,7 +25,7 @@ const diff3 = document.getElementById('advanced')
 let picture = document.createElement('img')
 
 const renderImg = () => {
-	loadImg(puzzleObj.imgUrl)
+	loadImg(puzzleObj.imgSrc)
 		.then(imgElement => {
 			picture = imgElement
 			picture.classList.add('picture', 'animated', 'bounceIn')
@@ -50,13 +50,12 @@ const clearForm = () => {
 }
 
 const savePuzzle = () => {
-	if (imgHasLoaded) {
+	if (imgHasLoaded && inputWord.value !== '') {
 		puzzleObj.difficulty = diff1.checked ? 1 : diff2.checked ? 2 : 3
 		puzzleObj.word = inputWord.value
-		puzzleObj.imgUrl = inputUrl.value
-		const puzzlesArr = getcustomPuzzles()
+		puzzleObj.imgSrc = inputUrl.value
+		const puzzlesArr = getCustomPuzzles()
 		puzzlesArr.push(puzzleObj)
-		console.log(puzzlesArr)
 		localStorage.setItem('puzzles', JSON.stringify(puzzlesArr))
 		clearForm()
 	}
@@ -67,7 +66,7 @@ inputWord.addEventListener('input', e => {
 })
 
 inputUrl.addEventListener('input', e => {
-	puzzleObj.imgUrl = e.target.value
+	puzzleObj.imgSrc = e.target.value
 	if (imgContainer.hasChildNodes()) {
 		imgContainer.innerHTML = ''
 	}
