@@ -1,6 +1,7 @@
 import Hangman from './hangman'
 import Game from './game'
-import { loadHiScore, getPuzzleCount, loadImg } from './requests'
+import puzzles from './puzzles'
+import { loadHiScore, getPuzzleCount, loadImg, getCustomPuzzles } from './requests'
 import 'particles.js'
 
 const body = document.querySelector('body')
@@ -14,6 +15,8 @@ const scoreBest = body.querySelector('#score-best')
 const difficultyDisplay = body.querySelector('#score-difficulty')
 const guessesDisplay = body.querySelector('#score-guessess')
 const navBar = body.querySelector('nav')
+const buildInCheckbox = body.querySelector('input[name=build-in]')
+const customCheckbox = body.querySelector('input[name=custom]')
 
 let picture = document.createElement('img')
 const puzzleDisplay = document.createElement('div')
@@ -151,11 +154,36 @@ const startPuzzle = () => {
 	}
 }
 
+const getPuzzleSource = () => {
+	if (buildInCheckbox.checked && customCheckbox.checked) {
+		console.log('both clicked')
+		const puzzleSource = puzzles.concat(getCustomPuzzles())
+        console.log("TCL: getPuzzleSource -> puzzleSource", puzzleSource)
+		return puzzleSource
+	} else if (customCheckbox.checked) {
+		return getCustomPuzzles()
+	} else if (buildInCheckbox.checked) {
+		return puzzles
+	} else {
+		return []
+	}
+}
+
 const startGame = () => {
 	if (game1 && window.confirm('Do you really want to quit the game?')) {
 		location.reload()
 	} else if (!game1) {
-		game1 = new Game()
+		const puzzleSource = getPuzzleSource()
+
+		if (puzzleSource.length === 0) {
+			const redirect = window.confirm('Puzzle source is empty. Do you want to add your custom puzzles?')
+			if (redirect) {
+				window.location.assign('./addPuzzle.html')
+			} else {
+				return
+			}
+		}
+		game1 = new Game(puzzleSource)
 		body.removeChild(navBar)
 
 		//Replacing difficulty selection by puzzle display

@@ -54,6 +54,11 @@ a:hover {
 	color: rgb(37, 35, 35);
 }
 
+#container-title span:hover {
+	-webkit-animation: bounceOutUp 1s;
+	animation: bounceOutUp 1s;
+}
+
 .container-radio {
 	display: grid;
 	grid-template-columns: repeat(3, auto);
@@ -63,12 +68,14 @@ a:hover {
 
 .radio {
 	display: grid;
+
 	grid-template-rows: 1fr 1fr;
-	justify-items: center;
+	*/justify-items: center;
 	align-items: center;
 	padding-left: 10px;
 	padding-right: 10px;
-	/* margin-top: 0.5em; */
+	cursor: pointer;
+	/* margin-top: 5em; */
 }
 
 label {

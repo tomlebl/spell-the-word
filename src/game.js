@@ -1,13 +1,13 @@
-import puzzles from './puzzles'
 import { getCustomPuzzles } from './requests'
 
 class Game {
-	constructor() {
+	constructor(puzzleSource) {
 		this.score = 0
 		this.difficulty = this.getDifficulty()
 		this.remainingGuesses = 6 - this.difficulty
 		this.usedWords = []
 		this.displayMessage = ''
+		this.puzzleSource = puzzleSource
 	}
 	getDifficulty() {
 		if (document.getElementById('beginner').checked) {
@@ -20,12 +20,11 @@ class Game {
 	}
 
 	getPuzzle() {
-		const puzzlesFiltered = puzzles
-			.concat(getCustomPuzzles())
+		const puzzlesFiltered = this.puzzleSource
 			.filter(puzzle => puzzle.difficulty === this.difficulty)
 			.filter(puzzle => !this.usedWords.includes(puzzle.word))
 
-		console.log(puzzlesFiltered)
+		// console.log(puzzlesFiltered)
 
 		return puzzlesFiltered.length === 0
 			? { word: '' }

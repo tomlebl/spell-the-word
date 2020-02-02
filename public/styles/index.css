@@ -15,11 +15,7 @@
 #container-title {
 	margin-bottom: 50px;
 	margin-top: 70px;
-}
-
-#container-title span:hover {
-	-webkit-animation: bounceOutUp 1s;
-	animation: bounceOutUp 1s;
+	cursor: pointer;
 }
 
 #container-score {
@@ -70,6 +66,10 @@ p {
 	font-weight: 300;
 	margin-bottom: 0.8rem;
 	text-align: center;
+}
+
+h2 {
+	margin-bottom: 20px;
 }
 
 .display {
@@ -129,6 +129,23 @@ p {
 	grid-row-start: 3;
 	grid-column-start: 2;
 	margin: 6rem;
+}
+
+.container-source {
+	margin-top: 3rem;
+}
+
+.container-checkbox {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 20px;
+}
+
+.container-checkbox label {
+	font-size: 2rem;
+	margin-left: 20px;
 }
 
 @media only screen and (max-width: 1024px) {

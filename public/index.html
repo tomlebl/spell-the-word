@@ -5,8 +5,10 @@
 		<link rel="stylesheet" href="styles/styles.css" />
 		<link rel="stylesheet" href="styles/index.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" />
 		<link rel="icon" href="images/spell.png" />
 	</head>
+
 	<body id="particles-js">
 		<nav>
 			<a href="./addPuzzle.html">Add Puzzle</a>
@@ -41,19 +43,43 @@
 			</div>
 
 			<div id="difficulty" class="display">
-				<h2>Select difficulty:</h2>
+				<h2>Difficulty</h2>
 				<div class="container-radio">
-					<div class="radio">
+					<div class="radio pretty p-icon p-curve p-jelly">
 						<input type="radio" id="beginner" name="difficulty" value="beginner" checked />
-						<label style="color: lightgreen" for="beginner">1</label>
+						<div class="state p-warning">
+							<i class="icon mdi mdi-check"></i>
+							<label style="color: lightgreen">1</label>
+						</div>
 					</div>
-					<div class="radio">
+					<div class="radio pretty p-icon p-curve p-jelly">
 						<input type="radio" id="intermediate" name="difficulty" value="intermediate" />
-						<label style="color: aqua" for="intermediate">2</label>
+						<div class="state p-warning">
+							<label style="color: aqua" for="intermediate">2</label>
+						</div>
 					</div>
-					<div class="radio">
+					<div class="radio pretty p-icon p-curve p-jelly">
 						<input type="radio" id="advanced" name="difficulty" value="advanced" />
-						<label style="color:red" for="advanced">3</label>
+						<div class="state p-warning">
+							<label style="color:red" for="advanced">3</label>
+						</div>
+					</div>
+				</div>
+				<div class="container-source">
+					<h2>Puzzle Source</h2>
+					<div class="container-checkbox">
+						<div class="pretty p-icon p-round p-jelly">
+							<input type="checkbox" name="build-in" checked="checked" />
+							<div class="state p-primary">
+								<label for="build-in">Default</label>
+							</div>
+						</div>
+						<div class="pretty p-icon p-round p-jelly">
+							<input type="checkbox" name="custom" checked="checked" />
+							<div class="state p-primary">
+								<label for="build-in">Custom</label>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
