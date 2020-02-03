@@ -1,11 +1,12 @@
 import Hangman from './hangman'
 import Game from './game'
-import { loadHiScore, saveHiScore, getPuzzle, getPuzzleCount } from './requests'
+import puzzles from './puzzles'
+import { loadHiScore, getPuzzleCount, loadImg, getCustomPuzzles } from './requests'
 import 'particles.js'
 
 const body = document.querySelector('body')
 const difficultyEl = body.querySelector('#difficulty')
-const imgConstainer = body.querySelector('#container-img')
+const imgContainer = body.querySelector('#container-img')
 const resetButton = body.querySelector('#reset')
 const title = body.querySelector('#container-title')
 const emojiContainer = body.querySelectorAll('.container-emoji')
@@ -13,8 +14,11 @@ const scoreCurrent = body.querySelector('#score-current')
 const scoreBest = body.querySelector('#score-best')
 const difficultyDisplay = body.querySelector('#score-difficulty')
 const guessesDisplay = body.querySelector('#score-guessess')
+const navBar = body.querySelector('nav')
+const buildInCheckbox = body.querySelector('input[name=build-in]')
+const customCheckbox = body.querySelector('input[name=custom]')
 
-const picture = document.createElement('img')
+let picture = document.createElement('img')
 const puzzleDisplay = document.createElement('div')
 const puzzleContainer = document.createElement('div')
 const puzzleMessage = document.createElement('h3')
@@ -39,12 +43,6 @@ const setRandomColour = () => '#' + (Math.random().toString(16) + '000000').slic
 
 const setGradient = (color1, color2) => {
 	body.style.background = `linear-gradient(to right, ${color1}, ${color2})`
-}
-
-const renderImg = imgSrc => {
-	picture.setAttribute('src', imgSrc)
-	picture.classList.add('picture', 'animated', 'bounceIn')
-	imgConstainer.appendChild(picture)
 }
 
 const renderPuzzle = () => {
@@ -95,7 +93,7 @@ const renderNewHiScore = () => {
 const checkHiScore = () => {
 	if (game1.score > loadHiScore()) {
 		scoreBest.textContent = game1.score
-		saveHiScore(game1.score)
+		game1.saveHiScore()
 		setTimeout(renderNewHiScore, 2000)
 	}
 }
@@ -109,7 +107,9 @@ const startPuzzle = () => {
 		element.innerHTML = ''
 	})
 
-	let { word, imgSrc } = getPuzzle(game1.difficulty, game1.usedWords)
+	let { word, imgSrc } = game1.getPuzzle()
+
+	console.log(word, imgSrc)
 
 	//Check if all puzzles have been used
 	if (word === '' && game1.difficulty === 3) {
@@ -122,7 +122,7 @@ const startPuzzle = () => {
 			difficultyDisplay.textContent = game1.difficulty
 			const difColor = game1.difficulty === 2 ? 'acqua' : 'red'
 			difficultyDisplay.setAttribute('style', `color: ${difColor}`)
-			const newPuzzle = getPuzzle(game1.difficulty, game1.usedWords)
+			const newPuzzle = game1.getPuzzle()
 			word = newPuzzle.word
 			imgSrc = newPuzzle.imgSrc
 			puzzleContainer.classList.add('display-record')
@@ -139,9 +139,33 @@ const startPuzzle = () => {
 		hangman1 = new Hangman(word, imgSrc, game1.remainingGuesses)
 		setGradient(setRandomColour(), setRandomColour())
 
-		renderImg(hangman1.imgSrc)
+		loadImg(hangman1.imgSrc)
+			.then(imgElement => {
+				picture = imgElement
+				picture.classList.add('picture', 'animated', 'bounceIn')
+				imgContainer.appendChild(picture)
+			})
+			.catch(err => {
+				console.log(err)
+				startPuzzle()
+			})
 		renderPuzzle()
 		snd_start.play()
+	}
+}
+
+const getPuzzleSource = () => {
+	if (buildInCheckbox.checked && customCheckbox.checked) {
+		console.log('both clicked')
+		const puzzleSource = puzzles.concat(getCustomPuzzles())
+        console.log("TCL: getPuzzleSource -> puzzleSource", puzzleSource)
+		return puzzleSource
+	} else if (customCheckbox.checked) {
+		return getCustomPuzzles()
+	} else if (buildInCheckbox.checked) {
+		return puzzles
+	} else {
+		return []
 	}
 }
 
@@ -149,7 +173,18 @@ const startGame = () => {
 	if (game1 && window.confirm('Do you really want to quit the game?')) {
 		location.reload()
 	} else if (!game1) {
-		game1 = new Game()
+		const puzzleSource = getPuzzleSource()
+
+		if (puzzleSource.length === 0) {
+			const redirect = window.confirm('Puzzle source is empty. Do you want to add your custom puzzles?')
+			if (redirect) {
+				window.location.assign('./addPuzzle.html')
+			} else {
+				return
+			}
+		}
+		game1 = new Game(puzzleSource)
+		body.removeChild(navBar)
 
 		//Replacing difficulty selection by puzzle display
 		puzzleDisplay.innerHTML = '<div id="puzzle" class="puzzle">'
@@ -159,7 +194,7 @@ const startGame = () => {
 		puzzleContainer.appendChild(puzzleMessage)
 		difficultyEl.replaceWith(puzzleContainer)
 		resetButton.textContent = 'Reset the Game'
-		imgConstainer.removeChild(title)
+		imgContainer.removeChild(title)
 		difficultyDisplay.textContent = game1.difficulty
 		setDifColor(game1.difficulty)
 		startPuzzle()
@@ -190,7 +225,11 @@ window.addEventListener('keypress', e => {
 		renderGameFailed()
 		hangman1.guessedLetters = hangman1.word
 		renderPuzzle()
-		checkHiScore()
+		if (game1.score > loadHiScore()) {
+			scoreBest.textContent = game1.score
+			game1.saveHiScore()
+			setTimeout(renderNewHiScore, 2000)
+		}
 	}
 
 	// Starting a new puzzle if previous one is finished
@@ -204,7 +243,11 @@ window.addEventListener('keypress', e => {
 		snd_succes.play()
 		renderEmoji('emoji-smiley.png')
 		scoreCurrent.textContent = game1.score
-		setTimeout(startPuzzle, 2000)
+
+		setTimeout(() => {
+			imgContainer.removeChild(picture)
+			startPuzzle()
+		}, 2000)
 	}
 
 	renderPuzzle()

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Spell The Word</title>
+		<link rel="stylesheet" href="styles/styles.css" />
+		<link rel="stylesheet" href="styles/addPuzzle.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
+		<link rel="icon" href="images/spell.png" />
+	</head>
+
+	<body id="particles-js">
+		<nav>
+			<a href="./index.html" id="homeLink">Back to Game</a>
+			<a href="./addPuzzle.html">Add Puzzle</a>
+		</nav>
+		<div class="container">
+			<div id="container-title">
+				<span class="animated fadeInLeftBig">A</span>
+				<span class="animated fadeInLeftBig" style="animation-delay: 100ms">d</span>
+				<span class="animated fadeInLeftBig" style="margin-right: 5px; animation-delay: 400ms">d</span>
+				<span class="animated fadeInLeftBig" style="animation-delay: 500ms">P</span>
+				<span class="animated fadeInLeftBig" style="animation-delay: 600ms">u</span>
+				<span class="animated fadeInLeftBig" style="animation-delay: 800ms">z</span>
+				<span class="animated fadeInLeftBig" style="animation-delay: 900ms">l</span>
+				<span class="animated fadeInLeftBig" style="animation-delay: 1000ms">e</span>
+			</div>
+			<div class="form">
+				<div>
+					<h4>Word</h4>
+					<input type="text" name="word" id="input-word" />
+				</div>
+
+				<div class="container-url">
+					<h4>Image URL</h4>
+					<input type="text" name="imgUrl" id="input-url" placeholder="Enter image URL" />
+				</div>
+				<div class="container-radio-add">
+					<h4>Difficulty:</h4>
+					<div class="radio">
+						<input type="radio" id="beginner" name="difficulty" value="beginner" checked />
+						<label style="color: lightgreen" for="beginner">1</label>
+					</div>
+
+					<div class="radio">
+						<input type="radio" id="intermediate" name="difficulty" value="intermediate" />
+						<label style="color: aqua" for="intermediate">2</label>
+					</div>
+					<div class="radio">
+						<input type="radio" id="advanced" name="difficulty" value="advanced" />
+						<label style="color:red" for="advanced">3</label>
+					</div>
+				</div>
+				<button id="button-clear">Clear</button>
+				<button id="button-save">Save Puzzle</button>
+			</div>
+			<div id="container-img"></div>
+		</div>
+
+		<script src="/scripts/addPuzzle-bundle.js"></script>
+	</body>
+</html>

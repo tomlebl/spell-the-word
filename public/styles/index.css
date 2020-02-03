@@ -1,0 +1,192 @@
+.container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: center;
+	justify-items: center;
+	grid-column-gap: 20px;
+	max-height: 800vh;
+}
+
+#container-img {
+	grid-column-start: 2;
+	margin-top: 50px;
+}
+
+#container-title {
+	margin-bottom: 50px;
+	margin-top: 70px;
+	cursor: pointer;
+}
+
+#container-score {
+	display: grid;
+	text-transform: uppercase;
+	grid-template-columns: 1fr 1fr;
+	grid-row-start: 2;
+}
+
+#container-score h3 {
+	border-bottom: 1px solid white;
+	padding: 10px;
+	margin: 10px;
+}
+
+#difficulty {
+	grid-row-start: 2;
+	grid-column-start: 2;
+}
+
+#guesses {
+	grid-row-start: 2;
+	grid-column-start: 3;
+}
+
+.picture {
+	max-height: 300px;
+	max-width: 450px;
+	margin-bottom: 3rem;
+	border: 3px solid white;
+	border-radius: 10px;
+}
+
+#puzzle span {
+	border-bottom: 1px solid #534f59;
+	display: inline-block;
+	font-size: 3rem;
+	height: 2.4rem;
+	line-height: 2.4rem;
+	margin: 0 0.3rem;
+	text-align: center;
+	text-transform: uppercase;
+	width: 2.4rem;
+	padding-bottom: 2rem;
+}
+
+p {
+	font-weight: 300;
+	margin-bottom: 0.8rem;
+	text-align: center;
+}
+
+h2 {
+	margin-bottom: 20px;
+}
+
+.display {
+	display: grid;
+	align-items: center;
+	background: #2b292e;
+	border: 3px solid white;
+	border-radius: 10px;
+	padding: 30px;
+	text-align: center;
+	min-width: 400px;
+}
+
+.display-score:hover {
+	-webkit-animation: shake 1s;
+	animation: shake 1s;
+}
+
+.display-number {
+	font-size: 4rem;
+}
+
+.display-succes {
+	background-color: green;
+	border-color: black;
+}
+
+.display-fail {
+	background-color: red;
+	border-color: black;
+}
+
+.display-record {
+	background-color: #7044a0;
+	border-color: black;
+}
+
+.container-puzzle {
+	grid-row-start: 2;
+	grid-column-start: 2;
+	color: #fafafa;
+}
+
+.puzzle {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 2rem;
+	margin-top: 2rem;
+	font-size: 5r;
+}
+
+.emojiImg {
+	max-width: 300px;
+}
+
+.button {
+	grid-row-start: 3;
+	grid-column-start: 2;
+	margin: 6rem;
+}
+
+.container-source {
+	margin-top: 3rem;
+}
+
+.container-checkbox {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 20px;
+}
+
+.container-checkbox label {
+	font-size: 2rem;
+	margin-left: 20px;
+}
+
+@media only screen and (max-width: 1024px) {
+	body {
+		font-size: 1.3rem;
+	}
+	.container {
+		grid-column-gap: 0px;
+	}
+	#container-title {
+		font-size: 4rem;
+	}
+	.display-number {
+		font-size: 3rem;
+	}
+	.display {
+		padding: 10px;
+		padding-bottom: 20px;
+		padding-top: 20px;
+		text-align: center;
+		margin: 0px;
+		min-width: 300px;
+	}
+
+	#container-puzzle {
+		max-width: 350px;
+	}
+
+	.display-number {
+		font-size: 3rem;
+	}
+	#puzzle span {
+		font-size: 2rem;
+	}
+	.picture {
+		max-width: 300px;
+	}
+	.emojiImg {
+		max-width: 200px;
+	}
+	label {
+		font-size: 2.5rem;
+	}
+}
