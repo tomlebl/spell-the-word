@@ -1,5 +1,8 @@
 import puzzles from './puzzles'
 
+const API_URL = 'https://pixabay.com/api'
+const API_KEY = '15192266-cd06e38f5473dab158adfdbeb'
+
 const getCustomPuzzles = () => {
 	const puzzlesJSON = localStorage.getItem('puzzles')
 	return puzzlesJSON ? JSON.parse(puzzlesJSON) : []
@@ -28,4 +31,21 @@ const loadImg = imgSrc =>
 		image.src = imgSrc
 	})
 
-export { loadHiScore, getPuzzleCount, loadImg, getCustomPuzzles }
+const loadPixabay = async (word, amount) => {
+	console.log(word)
+	if (word) {
+		const response = await fetch(
+			`${API_URL}/?key=${API_KEY}&q=${word}&image_type=photo&per_page=${amount}&safesearch=true`
+		)
+		if (response.status === 200) {
+			const data = await response.json()
+			return data
+		} else {
+			throw new Error('Unable to load images from Pixabay. API error')
+		}
+	} else {
+		throw new Error('word is missing')
+	}
+}
+
+export { loadHiScore, getPuzzleCount, loadImg, getCustomPuzzles, loadPixabay }
