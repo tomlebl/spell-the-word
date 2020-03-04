@@ -50,10 +50,19 @@
 						<label style="color:red" for="advanced">3</label>
 					</div>
 				</div>
-				<button id="button-clear">Clear</button>
-				<button id="button-save">Save Puzzle</button>
+				<div class="buttons">
+					<button id="button-clear">Clear</button>
+					<button id="button-pixabay">Load Images</button>
+					<select id="amount">
+						<option value="6">6</option>
+						<option value="12">12</option>
+						<option value="24">24</option>
+					</select>
+					<button id="button-save">Save Puzzle</button>
+				</div>
 			</div>
-			<div id="container-img"></div>
+			<p id="message">Enter word and load images from Pixabay or enter URL of an alternative image</p>
+			<div id="container-img" class="container-img"></div>
 		</div>
 
 		<script src="/scripts/addPuzzle-bundle.js"></script>
