@@ -14,3 +14,4 @@ For production build run
 npm run build
 ```
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1e0dba21-25d3-479f-98ae-394452df518e/deploy-status)](https://app.netlify.com/sites/spell-the-word/deploys)
